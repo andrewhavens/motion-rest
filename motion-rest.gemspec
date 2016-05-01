@@ -1,16 +1,12 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'motion/rest/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "motion-rest"
-  spec.version       = Motion::Rest::VERSION
+  spec.version       = "1.0.0"
   spec.authors       = ["Andrew Havens"]
   spec.email         = ["email@andrewhavens.com"]
 
-  spec.summary       = %q{A RubyMotion model framework for RESTful JSON APIs.}
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{A RubyMotion model framework for integrating with RESTful JSON APIs.}
   spec.homepage      = "https://github.com/andrewhavens/motion-rest"
   spec.license       = "MIT"
 
@@ -19,7 +15,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_runtime_dependency "afmotion"
+  spec.add_runtime_dependency "motion-support" # inflectors
+  spec.add_runtime_dependency "sugarcube" # nsdate helpers
+
   spec.add_development_dependency "bundler", "~> 1.10"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  # NOTE: testing dependencies are loaded in the Rakefile
+  spec.add_development_dependency "motion-spec" # RSpec-like Bacon replacement
+  spec.add_development_dependency "motion-stump" # stubbing and mocking
+  spec.add_development_dependency "webstub" # http stubbing
 end
